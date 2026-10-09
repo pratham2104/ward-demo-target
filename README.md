@@ -123,3 +123,5 @@ target/
   proves exfiltration.
 
 Webhook smoke test: 2026-10-09T20:50:00Z
+
+Support hours updated 2026-10-09T21:12:32.015Z
