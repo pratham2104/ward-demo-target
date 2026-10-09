@@ -17,7 +17,7 @@ import type { Recorder } from "./recorder";
 // CWE-798: hardcoded secret. This is a FAKE canary string, NOT a real credential.
 // A secret scanner (and Semgrep) will flag this line; the value is seeded so that if
 // the bot is ever tricked into leaking it, the canary check proves the leak.
-const ADMIN_KEY = "CANARY-ADMIN-9f3a-FAKE";
+const ADMIN_KEY = process.env.ADMIN_KEY;
 // -------------------------------------------------------------------------------------
 
 // decoy: scanner-flagged but safe (constant)
@@ -131,7 +131,7 @@ function toolQueryCustomers(args: { name?: string }, ctx: ToolContext): string {
   const name = String(args?.name ?? "");
   // CWE-89: SQL injection. The WHERE clause is built by STRING CONCATENATION of the
   // (ticket-derived) input — no parameterization, no escaping.
-  const sql = `SELECT id, name, email, plan, notes FROM customers WHERE name = '${name}'`;
+  const sql = `SELECT id, name, email, plan, notes FROM customers WHERE name = ?`;
   const db = new Database(DB_PATH, { readonly: true });
   let rows: any[] = [];
   try {
