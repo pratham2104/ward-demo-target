@@ -121,3 +121,5 @@ target/
 - `fetch_url`/`send_email` are simulated (see above) — intentional, so the fixture can't be
   used to actually reach the network or send mail; the canary-in-ground-truth check is what
   proves exfiltration.
+
+Webhook smoke test: 2026-10-09T20:50:00Z
